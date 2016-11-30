@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>It's CHORE Turn!</title>
+        <link rel="stylesheet" type="text/css" href="/appDir/lib/bower_components/materialize/dist/css/materialize.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Monoton|Raleway" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/appDir/main.css">
+    </head>
+    <body ng-app="ChoreApp" style="background-color: snow;">
+        <div ng-controller="TopCtrl">
+            <div ng-controller="NavCtrl" ng-include=" 'partials/navbar.html' ">
+            </div>
+            <div ng-view></div>
+            </div>
+
+    <!-- 3rd party libs -->
+
+     <script type="text/javascript" src="/appDir/lib/bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="/appDir/lib/bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="/appDir/lib/bower_components/angular-route/angular-route.min.js"></script>
+    <script type="text/javascript" src="/appDir/lib/bower_components/chart.js/dist/Chart.min.js"></script>
+    <script type="text/javascript" src="/appDir/lib/bower_components/angular-chart.js/dist/angular-chart.min.js"></script>
+    <script type="text/javascript" src="/appDir/lib/bower_components/firebase/firebase.js"></script>
+    <script type="text/javascript" src="/appDir/lib/bower_components/materialize/dist/js/materialize.min.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-materialize/0.2.1/angular-materialize.min.js"></script>
+
+
+    <!-- App specific files -->
+    <script type="text/javascript" src="/appDir/app/app.js"></script>
+    <script type="text/javascript" src="/appDir/fb-getter.js"></script>
+    <!-- Controllers -->
+    <script type="text/javascript" src="/appDir/app/controllers/TopCtrl.js"></script>
+    <script type="text/javascript" src="/appDir/app/controllers/NavCtrl.js"></script>
+    <script type="text/javascript" src="/appDir/app/controllers/LoginCtrl.js"></script>
+    <script type="text/javascript" src="/appDir/app/controllers/NewHouseholdCtrl.js"></script>
+    <script type="text/javascript" src="/appDir/app/controllers/NewChoreCtrl.js"></script>
+    <script type="text/javascript" src="/appDir/app/controllers/AllChoresCtrl.js"></script>
+    <script type="text/javascript" src="/appDir/app/controllers/ChoreTurnCtrl.js"></script>
+    <script type="text/javascript" src="/appDir/app/controllers/DivorceCtrl.js"></script>
+    <script type="text/javascript" src="/appDir/app/controllers/HouseholdDataCtrl.js"></script>
+    <script type="text/javascript" src="/appDir/app/controllers/EditChoreCtrl.js"></script>
+    <!-- Factories -->
+    <script type="text/javascript" src="/appDir/app/factories/AuthFactory.js"></script>
+    <script type="text/javascript" src="/appDir/app/factories/ChoreFactory.js"></script>
+    <script type="text/javascript" src="/appDir/app/factories/FilterFactory.js"></script>
+    <script type="text/javascript" src="/appDir/app/factories/FilterFactory.js"></script>
+    <script type="text/javascript" src="/appDir/app/factories/DivorceFactory.js"></script>
+    </body>
+</html>
