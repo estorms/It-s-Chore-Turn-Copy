@@ -6,6 +6,7 @@ app.controller("LoginCtrl", function($scope, $window, AuthFactory ) {
     password: ""
   };
 
+
   let pleaseSignUpToast = null;
 
   $scope.register = () => {
@@ -37,7 +38,7 @@ let loginNewUser = () => {
         console.log("there's an error logging in");
       });
   };
-
+ 
   $scope.login = () => {
     console.log("you clicked login");
     AuthFactory.loginUser($scope.account)
