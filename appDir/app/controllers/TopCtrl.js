@@ -14,7 +14,7 @@ app.controller("TopCtrl", function($scope, $q, $location, $window, AuthFactory) 
       $scope.isLoggedIn = false;
       $window.location.href = "#/login";
     }
-      $scope.apply();
+      // $scope.apply();
 
   });
 
