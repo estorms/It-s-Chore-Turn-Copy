@@ -20,33 +20,33 @@
         <div class="col s12 m4" ng-repeat="chore in chores | filter: {assignedMember: searchText.search}">
         <div class = "chore-card">
           <div class="card blue-grey lighten-3">
-          <span class="card-title" style="font-weight: bold">{{chore.name}}</span>
+          <span class="card-title bold">{{chore.name}}</span>
             <div class="card-image">
-               <img ng-if="chore.assignedMember === houseMem1" class="memb-pic .img-responsive" src= "{{houseMem1img}}" style="height: 32vh">
-               <img ng-if="chore.assignedMember === houseMem2" class="memb-pic .img-responsive" src="{{houseMem2img}}" style="height: 32vh">
+               <img ng-if="chore.assignedMember === houseMem1" class="memb-pic .img-responsive" src= "{{houseMem1img}}">
+               <img ng-if="chore.assignedMember === houseMem2" class="memb-pic .img-responsive" src="{{houseMem2img}}">
               <!--  <img ng-if="!houseMem1img || !houseMem2img" class="memb-pic .img-responsive" src="https://i.ytimg.com/vi/tntOCGkgt98/maxresdefault.jpg"> -->
                </div>
 
-            <div class="card-content black-text" style="height: 30vh">
+            <div class="card-content black-text">
 
               <p>Assigned To: <span style="color: white">{{chore.assignedMember}}</span></p>
-              <p>Irritation Points: <span style="font-weight: bolder; color: firebrick">{{chore.irritationPoints}}</span></p>
+              <p>Irritation Points: <span class="ip">{{chore.irritationPoints}}</span></p>
              <p ng-if="chore.frequency <= 0"> No Points Left to Learn By Completing This Chore</p>
              <!--  <p>This is houseMem1 {{houseMem1}}</p>
               <p>This is chore.assignedMember {{chore.assignedMember}}</p>
               <p> Earn {{chore.irritationPoints}} Points by Completing this Chore</p> -->
               <!-- <p ng-if="chore.completed === true">{{chore.assignedMember}} has completed this chore</p> -->
-              <p ng-if="chore.completed === false">{{chore.assignedMember}} has <span style="color: red; font-weight: bolder">not</span> completed this chore</p>
-              <p ng-if="chore.frequency > 0">Needs to be completed <span style="color: yellow">{{chore.frequency}}</span> more time(s) this week.</p>
-              <p ng-if="chore.completed === true">Times Completed: <span style="color: purple; font-weight: bolder">{{chore.timesCompleted}}</span></p>
-              <p ng-if="chore.frequency <= 0" style="color: cornsilk; font-weight: bolder">This Chore Has Been Completed for the Week! Great job, {{chore.assignedMember}}!</p>
+              <p ng-if="chore.completed === false">{{chore.assignedMember}} has <span class="not-complete">not</span> completed this chore</p>
+              <p ng-if="chore.frequency > 0">Needs to be completed <span class="neg-freq">{{chore.frequency}}</span> more time(s) this week.</p>
+              <p ng-if="chore.completed === true">Times Completed: <span class="times-complete">{{chore.timesCompleted}}</span></p>
+              <p ng-if="chore.frequency <= 0" class="completed-chore">This Chore Has Been Completed for the Week! Great job, {{chore.assignedMember}}!</p>
               <p>Due By: {{chore.dueDate}}</p>
-              <p style="font-weight: bold">Special Instructions: <span style="font-style: italic"> {{chore.description}}</span></p>
+              <p class="bold">Special Instructions: <span class="ital"> {{chore.description}}</span></p>
             </div>
 
             <div class="card-action">
               <a class = "btn" ng-click="completeChore(chore.id)">Complete</a>
-              <a class = "btn" ng-href="#/editchore/{{chore.id}}"  style="padding-left: 18px; padding-right: 18px">Edit</a>
+              <a class = "btn" ng-href="#/editchore/{{chore.id}}"  class="padded">Edit</a>
               <a class="btn" ng-click="deleteChore(chore.id)"> Delete</a>
             </div>
             </div>
@@ -55,8 +55,8 @@
 
               </div>
       <div id="chore-track">
-      <div class="col s12 m4"><a class = "btn" ng-click="showPoints()">Points to Date</a>
-      <a class="btn" ng-click="choreTurn()" style="float: right; max-height: 30%; min-height: 30%">Unplanned Chore?</a></div>
+      <div class="col s12 m4"><a class = "btn show-points" ng-click="showPoints()">Points to Date</a>
+      <a class="btn" ng-click="choreTurn()">Unplanned Chore?</a></div>
       </div>
       </div>
       <!-- </div> -->
