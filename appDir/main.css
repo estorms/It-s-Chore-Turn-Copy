@@ -8,6 +8,10 @@ body {
     font-weight: bolder;
 }
 
+.bg-img {
+    width: 100% !important;
+    max-height: 729px;
+}
 .neg-freq {
     color: yellow;
     font-weight: bolder;
@@ -22,12 +26,16 @@ body {
     font-weight: bold;
 }
 
+.mode {
+ color: black;
+}
 .ital {
     font-style: italic;
 }
 
 .ip {
-    font-weight: bolder; color: firebrick
+    font-weight: bolder; 
+    color: firebrick
 }
 
 .completed-chore {
@@ -83,16 +91,12 @@ h3 {
     min-height: 215px;
 }
 
-#home-options{
-    display: block;
-    width: 86%;
-    margin: 2% auto;
-}
 
 .home-opt{
     display: block;
     width: 75%;
     margin: 2% auto;
+    text-align: center;
 }
 
 a {
