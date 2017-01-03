@@ -35,7 +35,7 @@ $scope.pointsToChart =[];  //must be formatted as an array of arrays: internal a
 let leftToEarnMem1;
 let leftToEarnMem2;
 let leftToEarnArr = [];
-
+$scope.colors = ['#3498DB', '#d6240c'];
 //call the promise that returns userId, then pass that in to access household to burrow through data
 
 $scope.$parent.getUser()
@@ -82,6 +82,7 @@ let accesshousehold = () =>{
 
             }
                 $scope.pointsToChart.push(memPointsEarnedToDateArr)
+                console.log('memPointsEarnedToDateArr', memPointsEarnedToDateArr)
                 $scope.houseMem1=$scope.householdMembersNamesArr[0];
                 $scope.houseMem2=$scope.householdMembersNamesArr[1];
             // console.log('this is houseMem1', $scope.houseMem1, 'this is houseMem2', $scope.houseMem2)
@@ -104,7 +105,7 @@ let accesshousehold = () =>{
                     console.log('these are mem1Chores', mem1Chores, 'these are mem2Chores', mem2Chores)
                     //now that we have chores, identify which are and are not complete
                         for (var i = 0; i < mem1Chores.length; i++) {
-                            console.log('mem1Chores[i]', mem1Chores[i])
+                            // console.log('mem1Chores[i]', mem1Chores[i])
                             if(mem1Chores[i].completed === false || mem1Chores[i].frequency > 0) {
                             mem1inCompleteChores.push(mem1Chores[i])
                             }
@@ -135,13 +136,13 @@ let accesshousehold = () =>{
                         leftToEarnArr.push(leftToEarnMem1, leftToEarnMem2)
                         $scope.pointsToChart.push(leftToEarnArr)
 
-                // for (var i = 0; i < mem1Chores.length; i++){
-                //     mem1totalPoints = mem1totalPoints + parseInt(mem1Chores[i].irritationPoints)
-                // }
+                for (var i = 0; i < mem1Chores.length; i++){
+                    mem1totalPoints = mem1totalPoints + parseInt(mem1Chores[i].irritationPoints)
+                }
 
-                // for(var i = 0; i < mem2Chores.length; i++){
-                //    mem2totalPoints = mem2totalPoints + parseInt(mem2Chores[i].irritationPoints)
-                // }
+                for(var i = 0; i < mem2Chores.length; i++){
+                   mem2totalPoints = mem2totalPoints + parseInt(mem2Chores[i].irritationPoints)
+                }
 
 
 

@@ -9,7 +9,7 @@
         ".indexOn": ["id", "householdId", "assignedMember"]
       },
         "members" : {
-          ".indexOn": ["houseId", "Id"]
+          ".indexOn": ["houseId", "id"]
         }
   }
 }
