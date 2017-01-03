@@ -3,10 +3,46 @@ body {
     font-family: "Raleway";
 }
 
+.not-complete {
+    color: red;
+    font-weight: bolder;
+}
 
-img {
- /*max-height: 100%;*/
-width: 100%;
+.neg-freq {
+    color: yellow;
+    font-weight: bolder;
+}
+
+.times-complete {
+    color: purple; 
+    font-weight: bolder;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.ital {
+    font-style: italic;
+}
+
+.ip {
+    font-weight: bolder; color: firebrick
+}
+
+.completed-chore {
+    color: cornsilk; 
+    font-weight: bolder;
+}
+
+.show-points {
+    float: right; 
+    max-height: 30%; 
+    min-height: 30%;
+}
+
+.padded {
+    padding: 0px 18px;
 }
 
 h1, h2, h3, h4 {
@@ -35,14 +71,16 @@ h3 {
     box-shadow: 1px 1px 5px black;
     font-weight: 900;
 }
-
-
 .btn:hover {
     background-color: #212121;
 }
 
 .card {
     box-shadow: 20px 10px 10px;
+}
+
+.card-content {
+    min-height: 215px;
 }
 
 #home-options{
