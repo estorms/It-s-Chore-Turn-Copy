@@ -36,6 +36,23 @@ let leftToEarnMem1;
 let leftToEarnMem2;
 let leftToEarnArr = [];
 $scope.colors = ['#3498DB', '#d6240c'];
+$scope.options = {
+      scales: {
+        yAxes: [
+          {
+            id: 'y-axis',
+            type: 'linear',
+            display: true,
+            position: 'left',
+            ticks: {
+                fixedStepSize: 5
+            }
+
+          }
+          
+        ]
+      }
+    };
 //call the promise that returns userId, then pass that in to access household to burrow through data
 
 $scope.$parent.getUser()
@@ -116,8 +133,9 @@ let accesshousehold = () =>{
                                 mem2inCompleteChores.push(mem2Chores[i])
                             }
                         }
-                                console.log('mem2inCompleteChores', mem2inCompleteChores)
+                                // console.log('mem2inCompleteChores', mem2inCompleteChores)
 
+                                console.log()
                         //calculate points left to earn based on incomplete Chores
 
                         for(var i = 0; i < mem1inCompleteChores.length; i++) {
