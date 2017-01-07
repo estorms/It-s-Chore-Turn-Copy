@@ -45,7 +45,9 @@ $scope.options = {
             display: true,
             position: 'left',
             ticks: {
-                fixedStepSize: 5
+                fixedStepSize: 5,
+                min: 0,
+                max: 50
             }
 
           }
@@ -87,19 +89,17 @@ let accesshousehold = () =>{
             //now within householdMembers object, which contains other objects, so cycling through to extract each member's name and points earned
             for (var prop in householdMembers) { //householdMembers is an object full of other objects. Prop is the name of each internal object (in this case, the 'name' = FB returned numeric value)
                 // console.log('hello');
-                console.log(householdMembers[prop].name)
 
                 //put the householdmembers into an array of objects(rather than objects within objects)
                 householdMembersArr.push(householdMembers[prop])
 
                 $scope.householdMembersNamesArr.push(householdMembers[prop].name)
                 memPointsEarnedToDateArr.push(householdMembers[prop].pointsEarned)
-                console.log(memPointsEarnedToDateArr, 'memPointsEarnedToDateArr')
 
 
             }
                 $scope.pointsToChart.push(memPointsEarnedToDateArr)
-                console.log('memPointsEarnedToDateArr', memPointsEarnedToDateArr)
+                console.log('mem1PointsEarnedToDate', memPointsEarnedToDateArr[0], 'mem2PointsEarnedToDate', memPointsEarnedToDateArr[1]);
                 $scope.houseMem1=$scope.householdMembersNamesArr[0];
                 $scope.houseMem2=$scope.householdMembersNamesArr[1];
             // console.log('this is houseMem1', $scope.houseMem1, 'this is houseMem2', $scope.houseMem2)
@@ -119,12 +119,14 @@ let accesshousehold = () =>{
 
 
                 })
-                    console.log('these are mem1Chores', mem1Chores, 'these are mem2Chores', mem2Chores)
                     //now that we have chores, identify which are and are not complete
                         for (var i = 0; i < mem1Chores.length; i++) {
                             // console.log('mem1Chores[i]', mem1Chores[i])
                             if(mem1Chores[i].completed === false || mem1Chores[i].frequency > 0) {
                             mem1inCompleteChores.push(mem1Chores[i])
+                            }
+                            else { 
+                                (mem1inCompleteChores).push(newChore = {irritationPoints: 0, frequency: 0})
                             }
                         }
 
@@ -132,10 +134,14 @@ let accesshousehold = () =>{
                             if ( mem2Chores[i].completed === false || mem2Chores[i].frequency > 0) {
                                 mem2inCompleteChores.push(mem2Chores[i])
                             }
-                        }
-                                // console.log('mem2inCompleteChores', mem2inCompleteChores)
+                            else { 
+                                (mem2inCompleteChores).push(newChore = {irritationPoints: 0, frequency: 0})
+                            }
 
-                                console.log()
+                        }
+                                console.log('mem 1 incomplete chores', mem1inCompleteChores, mem2inCompleteChores, 'mem2inCompleteChores');
+
+                               
                         //calculate points left to earn based on incomplete Chores
 
                         for(var i = 0; i < mem1inCompleteChores.length; i++) {
@@ -144,7 +150,6 @@ let accesshousehold = () =>{
                         console.log('left to earnMem1', leftToEarnMem1)
 
                         for(var i = 0; i < mem2inCompleteChores.length; i++) {
-                            console.log('mem2inCompleteChores.frequency[i]', mem2inCompleteChores[i].frequency)
                             leftToEarnMem2 = mem2inCompleteChores[i].frequency * mem2inCompleteChores[i].irritationPoints;
                         }
                         console.log('left to earnMem2', leftToEarnMem2)
