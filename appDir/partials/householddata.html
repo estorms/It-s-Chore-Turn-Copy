@@ -5,23 +5,26 @@
     <a class='btn' href='#/allchores'>See All This Week's Chores</a>
     <!-- <a class='btn ng-hide' href='#/householddata'>Show Us The Data</a> -->
     <div ng-show="piebutton">
-    <a class='btn' ng-click="piechart = !piechart; barchart= !barchart; barbutton=!barbutton; piebutton=!piebutton">Pie Chart</a>
+    <a class='btn' ng-click="piechart = !piechart; barchart = !barchart; barbutton =!barbutton; piebutton = !piebutton">Pie Chart</a>
     </div>
-    <div ng-hide="barbutton">
+    <div ng-show="barbutton">
     <a class='btn' ng-click="barbutton = !barbutton; piebutton = !piebutton; barchart = !barchart; piechart = !piechart">Bar Chart</a>
     </div>
     <!-- <a class='btn' href='#demoModal'>Get A Divorce</a> -->
 </div>
 <!-- <h1>Show Me the Data</h1> -->
 <h2>Chore Data For: {{householdName}}</h2>
+
 <div ng-show="barchart">
 <canvas id="bar" class="chart chart-bar"
   chart-data="pointsToChart" chart-labels="householdMembersNamesArr" chart-series="series" chart-colors="colors" chart-options="options">
 </canvas>
 </div>
-<div ng-hide="piechart">
-<canvas class="chart chart-pie" 
+
+<div ng-show="piechart">
+<canvas id="pie" class="chart chart-pie" 
   chart-data="pieData" chart-labels="labelsForPieChart" chart-colors="colors" chart-options="options">
 </canvas> 
 </div>
+
   </div>

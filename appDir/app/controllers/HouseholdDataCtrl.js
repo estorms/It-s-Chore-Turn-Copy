@@ -32,10 +32,12 @@ let mem2totalPoints = 0;
 let memPointsEarnedToDateArr = [];
 let test = [];
 $scope.pointsToChart =[];  //must be formatted as an array of arrays: internal arrays are NOT scoped
-let leftToEarnMem1;
-let leftToEarnMem2;
+let leftToEarnMem1 = null;
+let leftToEarnMem2 = null;
+let purePointsArray = [];
+let maxAmount;
 let leftToEarnArr = [];
-$scope.colors = ['#3498DB', '#d6240c', 'green'];
+$scope.colors = ['#3498DB', '#d6240c'];
 // $scope.pieColors = ['green', 'orange', 'green', 'orange']
 $scope.options = {
       scales: {
@@ -46,9 +48,9 @@ $scope.options = {
             display: true,
             position: 'left',
             ticks: {
-                fixedStepSize: 5,
+                // fixedStepSize: 1,
                 min: 0,
-                max: 50
+                max: 50            
             }
 
           }
@@ -59,11 +61,10 @@ $scope.options = {
 $scope.labelsForPieChart = [];
 $scope.pointsForPieChart = [];
 
-$scope.piechart = true;
+$scope.piechart = false;
 $scope.barchart = true;
-$scope.barbutton = true;
+$scope.barbutton = false;
 $scope.piebutton= true;
-$scope.barbutton = true;
 //call the promise that returns userId, then pass that in to access household to burrow through data
 
 $scope.$parent.getUser()
@@ -133,11 +134,19 @@ let accesshousehold = () =>{
                     //now that we have chores, identify which are and are not complete
                         for (var i = 0; i < mem1Chores.length; i++) {
                             // console.log('mem1Chores[i]', mem1Chores[i])
+
+                            // if(mem1Chores.length <= 0) {
+                            //  (mem1inCompleteChores).push(newChore = {irritationPoints: 0, frequency: 0})
+
+                            // }
                             if(mem1Chores[i].completed === false || mem1Chores[i].frequency > 0) {
                             mem1inCompleteChores.push(mem1Chores[i])
+                            
                             }
-                            else { 
-                                (mem1inCompleteChores).push(newChore = {irritationPoints: 0, frequency: 0})
+                                
+
+                            else {
+                             (mem1inCompleteChores).push(newChore = {irritationPoints: 0, frequency: 0})
                             }
                         }
 
@@ -167,11 +176,19 @@ let accesshousehold = () =>{
 
                         //BEFORE PUSHING TO LEFT TO EARN, NEED TO FIGURE OUT HOW MUCH IS LEFT ON CHORES MARKED COMPLETE BUT NOT FINISHED
 
+                        if (leftToEarnMem1 === null) {
+                            leftToEarnMem1 = 0;
+                        }
+
+                        if (leftToEarnMem2 === null) {
+                            leftToEarnMem1 = 0;
+                        }
                         leftToEarnArr.push(leftToEarnMem1, leftToEarnMem2)
                         $scope.pointsToChart.push(leftToEarnArr)
                         $scope.pieData.push(leftToEarnMem1)
                         $scope.pieData.push(memPointsEarnedToDateArr[1]);
                         $scope.pieData.push(leftToEarnMem2);
+                        purePointsArray.push (leftToEarnMem1, leftToEarnMem2, memPointsEarnedToDateArr[0], memPointsEarnedToDateArr[1])
 
                 for (var i = 0; i < mem1Chores.length; i++){
                     mem1totalPoints = mem1totalPoints + parseInt(mem1Chores[i].irritationPoints)
@@ -186,7 +203,14 @@ let accesshousehold = () =>{
 
                 $scope.choresArr= choresObj;
                 console.log($scope.labelsForPieChart);
+                console.log(purePointsArray, 'purePointsArray')
+                maxAmount = Math.max(...purePointsArray);
+                console.log(maxAmount, 'maxAmount')
+                console.log($scope.options, 'scope.options')
+                                console.log("inside options before set", $scope.options.scales.yAxes[0].ticks.max)
 
+                $scope.options.scales.yAxes[0].ticks.max = maxAmount;
+                console.log("inside options after set", $scope.options.scales.yAxes[0].ticks.max)
 
             })
         })

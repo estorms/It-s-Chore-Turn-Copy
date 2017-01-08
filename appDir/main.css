@@ -16,7 +16,25 @@ body {
     color: yellow;
     font-weight: bolder;
 }
+::-webkit-input-placeholder {
+   color: black;
+}
 
+:-moz-placeholder { /* Firefox 18- */
+   color: black;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: black;  
+}
+
+:-ms-input-placeholder {  
+   color: black;  
+}
+
+.input-field.choreSearch {
+    margin: 0 1%;
+}
 .times-complete {
     color: purple; 
     font-weight: bolder;
@@ -105,4 +123,5 @@ a {
 
 #search {
     box-shadow: 5px 5px 5px darkgrey;
+    background-color: rgba(0,0,0, 0.1);
 }
