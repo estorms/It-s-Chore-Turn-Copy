@@ -4,12 +4,14 @@
     <a class='btn' href='#/newchore'>Enter A New  Chore</a>
     <a class='btn' href='#/allchores'>See All This Week's Chores</a>
     <!-- <a class='btn ng-hide' href='#/householddata'>Show Us The Data</a> -->
-    <div ng-show="piebutton">
+        <a class='btn' href='#/home'>Take Us Home</a>
+
+    <span ng-show="piebutton">
     <a class='btn' ng-click="piechart = !piechart; barchart = !barchart; barbutton =!barbutton; piebutton = !piebutton">Pie Chart</a>
-    </div>
-    <div ng-show="barbutton">
+    </span>
+    <span ng-show="barbutton">
     <a class='btn' ng-click="barbutton = !barbutton; piebutton = !piebutton; barchart = !barchart; piechart = !piechart">Bar Chart</a>
-    </div>
+    </span>
     <!-- <a class='btn' href='#demoModal'>Get A Divorce</a> -->
 </div>
 <!-- <h1>Show Me the Data</h1> -->
