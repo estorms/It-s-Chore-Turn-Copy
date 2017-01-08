@@ -1,7 +1,7 @@
 "use strict";
 
 app.controller("AllChoresCtrl", function ($scope, ChoreFactory, FilterFactory, $routeParams, $window, $location) {
-  $scope.searchText = FilterFactory;
+$scope.searchText = FilterFactory;
 let hId; //userID, used to access household
 let houseID; //household upper-level FB key/internal id
 let householdMembersNamesArr = [];

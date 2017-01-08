@@ -3,7 +3,7 @@ app.controller("HouseholdDataCtrl", function ($scope, ChoreFactory, $routeParams
 
 
 $scope.series = ['Points Earned To Date', 'Points Left to Earn']
-
+$scope.pieData = [];
 let hId;
 let houseID;
 $scope.householdMembersNamesArr = [];
@@ -32,10 +32,13 @@ let mem2totalPoints = 0;
 let memPointsEarnedToDateArr = [];
 let test = [];
 $scope.pointsToChart =[];  //must be formatted as an array of arrays: internal arrays are NOT scoped
-let leftToEarnMem1;
-let leftToEarnMem2;
+let leftToEarnMem1 = null;
+let leftToEarnMem2 = null;
+let purePointsArray = [];
+let maxAmount;
 let leftToEarnArr = [];
 $scope.colors = ['#3498DB', '#d6240c'];
+// $scope.pieColors = ['green', 'orange', 'green', 'orange']
 $scope.options = {
       scales: {
         yAxes: [
@@ -45,7 +48,9 @@ $scope.options = {
             display: true,
             position: 'left',
             ticks: {
-                fixedStepSize: 5
+                // fixedStepSize: 1,
+                min: 0,
+                max: 50            
             }
 
           }
@@ -53,6 +58,13 @@ $scope.options = {
         ]
       }
     };
+$scope.labelsForPieChart = [];
+$scope.pointsForPieChart = [];
+
+$scope.piechart = false;
+$scope.barchart = true;
+$scope.barbutton = false;
+$scope.piebutton= true;
 //call the promise that returns userId, then pass that in to access household to burrow through data
 
 $scope.$parent.getUser()
@@ -87,19 +99,19 @@ let accesshousehold = () =>{
             //now within householdMembers object, which contains other objects, so cycling through to extract each member's name and points earned
             for (var prop in householdMembers) { //householdMembers is an object full of other objects. Prop is the name of each internal object (in this case, the 'name' = FB returned numeric value)
                 // console.log('hello');
-                console.log(householdMembers[prop].name)
 
                 //put the householdmembers into an array of objects(rather than objects within objects)
                 householdMembersArr.push(householdMembers[prop])
 
                 $scope.householdMembersNamesArr.push(householdMembers[prop].name)
+
                 memPointsEarnedToDateArr.push(householdMembers[prop].pointsEarned)
-                console.log(memPointsEarnedToDateArr, 'memPointsEarnedToDateArr')
 
 
             }
                 $scope.pointsToChart.push(memPointsEarnedToDateArr)
-                console.log('memPointsEarnedToDateArr', memPointsEarnedToDateArr)
+                console.log('mem1PointsEarnedToDate', memPointsEarnedToDateArr[0], 'mem2PointsEarnedToDate', memPointsEarnedToDateArr[1]);
+                $scope.pieData.push(memPointsEarnedToDateArr[0])
                 $scope.houseMem1=$scope.householdMembersNamesArr[0];
                 $scope.houseMem2=$scope.householdMembersNamesArr[1];
             // console.log('this is houseMem1', $scope.houseMem1, 'this is houseMem2', $scope.houseMem2)
@@ -119,12 +131,22 @@ let accesshousehold = () =>{
 
 
                 })
-                    console.log('these are mem1Chores', mem1Chores, 'these are mem2Chores', mem2Chores)
                     //now that we have chores, identify which are and are not complete
                         for (var i = 0; i < mem1Chores.length; i++) {
                             // console.log('mem1Chores[i]', mem1Chores[i])
+
+                            // if(mem1Chores.length <= 0) {
+                            //  (mem1inCompleteChores).push(newChore = {irritationPoints: 0, frequency: 0})
+
+                            // }
                             if(mem1Chores[i].completed === false || mem1Chores[i].frequency > 0) {
                             mem1inCompleteChores.push(mem1Chores[i])
+                            
+                            }
+                                
+
+                            else {
+                             (mem1inCompleteChores).push(newChore = {irritationPoints: 0, frequency: 0})
                             }
                         }
 
@@ -132,10 +154,14 @@ let accesshousehold = () =>{
                             if ( mem2Chores[i].completed === false || mem2Chores[i].frequency > 0) {
                                 mem2inCompleteChores.push(mem2Chores[i])
                             }
-                        }
-                                // console.log('mem2inCompleteChores', mem2inCompleteChores)
+                            else { 
+                                (mem2inCompleteChores).push(newChore = {irritationPoints: 0, frequency: 0})
+                            }
 
-                                console.log()
+                        }
+                                console.log('mem 1 incomplete chores', mem1inCompleteChores, mem2inCompleteChores, 'mem2inCompleteChores');
+
+                               
                         //calculate points left to earn based on incomplete Chores
 
                         for(var i = 0; i < mem1inCompleteChores.length; i++) {
@@ -144,15 +170,25 @@ let accesshousehold = () =>{
                         console.log('left to earnMem1', leftToEarnMem1)
 
                         for(var i = 0; i < mem2inCompleteChores.length; i++) {
-                            console.log('mem2inCompleteChores.frequency[i]', mem2inCompleteChores[i].frequency)
                             leftToEarnMem2 = mem2inCompleteChores[i].frequency * mem2inCompleteChores[i].irritationPoints;
                         }
                         console.log('left to earnMem2', leftToEarnMem2)
 
                         //BEFORE PUSHING TO LEFT TO EARN, NEED TO FIGURE OUT HOW MUCH IS LEFT ON CHORES MARKED COMPLETE BUT NOT FINISHED
 
+                        if (leftToEarnMem1 === null) {
+                            leftToEarnMem1 = 0;
+                        }
+
+                        if (leftToEarnMem2 === null) {
+                            leftToEarnMem1 = 0;
+                        }
                         leftToEarnArr.push(leftToEarnMem1, leftToEarnMem2)
                         $scope.pointsToChart.push(leftToEarnArr)
+                        $scope.pieData.push(leftToEarnMem1)
+                        $scope.pieData.push(memPointsEarnedToDateArr[1]);
+                        $scope.pieData.push(leftToEarnMem2);
+                        purePointsArray.push (leftToEarnMem1, leftToEarnMem2, memPointsEarnedToDateArr[0], memPointsEarnedToDateArr[1])
 
                 for (var i = 0; i < mem1Chores.length; i++){
                     mem1totalPoints = mem1totalPoints + parseInt(mem1Chores[i].irritationPoints)
@@ -162,10 +198,19 @@ let accesshousehold = () =>{
                    mem2totalPoints = mem2totalPoints + parseInt(mem2Chores[i].irritationPoints)
                 }
 
+                $scope.labelsForPieChart.push(`${$scope.householdMembersNamesArr[0]}'s' Points Earned to Date`, `${$scope.householdMembersNamesArr[0]}'s' Points Left to Earn`, `${$scope.householdMembersNamesArr[1]}'s Points Earned to Date`, `${$scope.householdMembersNamesArr[1]}'s Points Left to Earn`);
 
 
                 $scope.choresArr= choresObj;
+                console.log($scope.labelsForPieChart);
+                console.log(purePointsArray, 'purePointsArray')
+                maxAmount = Math.max(...purePointsArray);
+                console.log(maxAmount, 'maxAmount')
+                console.log($scope.options, 'scope.options')
+                                console.log("inside options before set", $scope.options.scales.yAxes[0].ticks.max)
 
+                $scope.options.scales.yAxes[0].ticks.max = maxAmount;
+                console.log("inside options after set", $scope.options.scales.yAxes[0].ticks.max)
 
             })
         })
