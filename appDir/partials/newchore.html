@@ -1,33 +1,35 @@
 <div class="row" ng-init="accesshousehold()">
    <!--  <a class='btn' href='#/home'>Take Me Back Home</a> -->
 <div class="home-opt">
-    <a class='btn' href='#/newchore'>Enter A New  Chore</a>
+    <!-- <a class='btn' href='#/newchore'>Enter A New  Chore</a> -->
     <a class='btn' href='#/allchores'>See All This Week's Chores</a>
     <a class='btn' href='#/householddata'>Show Us The Data</a>
-    <a class='btn' href='#demoModal'>Get A Divorce</a>
+        <a class='btn' href='#/home'>Take Us Home</a>
 </div>
-  <h5 style="text-align: center">Enter A New Chore!</h5>
+  <h5 style="text-align: center; margin: 50px">Enter A New Chore!</h5>
   <form class="col s12">
     <div class="row">
       <table>
         <tbody><tr>
-          <td class="input-field">
+          <td class="input-field new-chore">
             <input id="newChoreName" type="text" class="validate" ng-model="newChore.name">
             <label for="newChoreName" class="grey-text darken-4">Chore Name</label>
           </td>
-          <td class="input-field">
+          <td class="input-field new-chore" id="special-instructions">
             <input id="newChoreDescription" type="text" class="validate" ng-model="newChore.description">
             <label for="newChoreDescription" class="grey-text darken-4">Special Instructions</label>
           </td>
         </tr></tbody>
       </table>
-    </div>
-    <div class="row">
-      <div class="number-field col sm6" style="width: 50%">
+    <!-- </div> -->
+    <!-- <div class="row"> -->
+    <table>
+    <tbody><tr>
+      <td class="number-field new-chore">
         <input type="number" min="0" max="20" id="newChoreFrequency" ng-model="newChore.frequency">
         <label for="newChoreFrequency" class="grey-text darken-4">Frequency</label>
-      </div>
-      <div class="input-field col sm6" style="width: 50%">
+      </td>
+      <td class="input-field new-chore" id="dueBy">
         <label for="inputCreated">Due By</label>
         <input input-date
         type="text"
@@ -56,25 +58,30 @@
         on-set="onSet()"
         on-stop="onStop()"
         />
-      </div>
-    </div>
-    <div class="row">
-      <div class="input-field col sm6" style="width: 50%">
+      </td>
+      </tr>
+    <!-- </div> -->
+    <!-- <div class="row"> -->
+    <tr>
+      <td class="input-field assignment">
         <div>Assigned To:
         <input type="radio" name="housemems" id="houseMem1" ng-click="houseMem1Selected()"/>
         <label for="houseMem1">{{houseMem1}}</label>
         <input type="radio" name="housemems" id="houseMem2" ng-click="houseMem2Selected()"/>
         <label for="houseMem2">{{houseMem2}}</label>
         </div>
-      </div>
-      <div class="range-field col sm6">
+      </td>
+      <td class="range-field">
         <input type="range" max="10" min="1" id ="IP" ng-model="newChore.irritationPoints">
         <label for="newChoreIrritationPoints" class="grey-text darken-4">Irritation Points</label>
-      </div>
-    </div>
-  </form>
-  <div class="input-field col s12">
+      </td>
+      </tr>
+      </tbody>
+    </table>
+   
+  
     <button class="btn" style="margin-top: 25px" ng-click="addNewChore()">Save</button>
     <button class="btn" style="margin-top: 25px; float: right" ng-click="reset()">Reset</button>
-  </div>
+    </form>
 </div>
+
