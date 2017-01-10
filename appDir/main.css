@@ -97,6 +97,12 @@ h3 {
     box-shadow: 1px 1px 5px black;
     font-weight: 900;
 }
+
+.btn.all-chores {
+    margin: 2px;
+    padding-left: 12px;
+    padding-right: 10px;
+}
 .btn:hover {
     background-color: #212121;
 }
@@ -124,4 +130,38 @@ a {
 #search {
     box-shadow: 5px 5px 5px darkgrey;
     background-color: rgba(0,0,0, 0.1);
+}
+
+.card .card-action {
+    text-align: center;
+    padding: 20px;
+}
+
+.input-field.new-chore {
+    padding: 0 15%;
+}
+.input-field.assignment {
+    padding: 0 15%;
+}
+
+.number-field.new-chore {
+    padding: 0 15%;
+}
+
+#newChoresFrequency {
+    padding: inherit;
+    width: 62%;
+}
+
+#inputCreated {
+    padding: 0 6%;
+}
+
+.range-field {
+    padding: 0 15%;
+}
+
+
+#special-instructions {
+    padding: 0 117px;
 }
